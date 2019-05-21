@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<title>Insert title here</title>
+
+<script type="text/javascript" 
+src="E:\001\MyProjectsForEclipse\flight\src\main\resources\static\js\jquery-3.2.1.min.js"></script>
+<script type="text/javascript" th:src="@{/js/jquery-3.2.1.min.js}"></script>
+
+<script type="text/javascript" 
+src="E:\001\MyProjectsForEclipse\flight\src\main\resources\static\js\bootstrap.js"></script>
+<script type="text/javascript" th:src="@{/js/bootstrap.js}"></script>
+
+<link rel="stylesheet" 
+href="E:\001\MyProjectsForEclipse\flight\src\main\resources\static\css\bootstrap.min.css"> 
+<link rel="stylesheet" th:href="@{/css/bootstrap.min.css}">
+
+</head>
+<body>
+	<h1>用户信息修改</h1>
+	<hr>
+
+    
+    <form action="/userUpdate" method="post" enctype="multipart/form-data">
+    	<p><input type="hidden" name="userId" th:value="${session.user.userId}"></p>
+		<p>
+			头像：<input type="file" name="photo"/>
+			<img th:src="@{${session.user.fileurl}}" width="100px">
+			<input type="hidden" name="fileurl" th:value="${session.user.fileurl}">
+		</p>
+		<p>账号：<input type="text" name="username" th:value="${session.user.username}" readonly="readonly" title="不可修改"></p>
+		<p>密码：<input type="text" name="password" th:value="${session.user.password}"/></p>
+		<p>电话：<input type="text" name="phone" th:value="${session.user.phone}"></p>
+		<p>邮箱：<input type="text" name="email" th:value="${session.user.email}"></p>
+		<p><input type="submit" value="提交" class="btn btn-default"/></p>
+</form>
+</body>
+</html>

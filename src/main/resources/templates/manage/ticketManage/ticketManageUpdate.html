@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<title>Insert title here</title>
+</head>
+<body>
+	<h1>机票管理修改</h1>
+	<hr>
+
+	<form action="/updateTicket" method="post">
+	<input type="hidden" name="ticketId" th:value="${ticket.ticketId}">
+       出发地: <select name="fromAirport.airportId">
+       		<option th:value="${ticket.fromAirport.airportId}" th:text="${ticket.fromAirport.airportName}" selected="selected"></option>
+			<option th:each="airport : ${airports}" th:th:value="${airport.airportId}" th:text="${airport.airportName}"></option>
+       </select>
+       <br>
+        目的地：  <select name="destinationAirport.airportId">
+			<option th:each="airport : ${airports}" th:th:value="${airport.airportId}" th:text="${airport.airportName}"></option>
+        	<option th:value="${ticket.destinationAirport.airportId}" th:text="${ticket.destinationAirport.airportName}" selected="selected"></option>
+        </select>
+        <br>
+       出发时间: <input name="departureTime" type="datetime-local"><br>
+       到达时间: <input name="arrivalTime" type="datetime-local"><br>
+       航班:  <select name="aircraft.aircraftId">
+       		<option th:value="${ticket.aircraft.aircraftId}" th:text="${ticket.aircraft.aircraftName}" selected="selected"></option>
+       		<option th:each="aircraft : ${aircrafts}" th:value="${aircraft.aircraftId}" th:text="${aircraft.aircraftName}"></option>
+       </select>
+       <br>
+       舱位类型: 
+       <select name="cabin.cabinId">
+       		<option th:value="${ticket.cabin.cabinId}" th:text="${ticket.cabin.cabinName}" selected="selected"></option>
+        	<option th:each="cabin : ${cabins}" th:value="${cabin.cabinId}" th:text="${cabin.cabinName}"></option>
+        </select><br>
+       票数: <input name="quantity" type="text" th:value="${ticket.quantity}"><br>
+      已卖出: <input name="sold" type="text" th:value="${ticket.sold}"><br>
+      价格: <input name="Price" type="text" th:value="${ticket.Price}"><br>
+        
+        <button type="submit">提交</button>
+    </form>
+</body>
+</html>

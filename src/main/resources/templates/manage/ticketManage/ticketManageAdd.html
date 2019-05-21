@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<title>Insert title here</title>
+</head>
+<body>
+<h1>机票管理添加</h1>
+	<hr>
+<form action="/addTicket" method="post">
+        出发地：<select name="fromAirport.airportId" >
+        	<option th:each="airport : ${airports}" th:th:value="${airport.airportId}" th:text="${airport.airportName}"></option>
+        </select><br>
+        目的地：<select name="destinationAirport.airportId">
+        	<option th:each="airport : ${airports}" th:value="${airport.airportId}" th:text="${airport.airportName}"></option>
+        </select><br>
+        出发时间:<input type="datetime-local" name="departureTime"><br>
+        到达时间:<input type="datetime-local" name="arrivalTime"><br>
+        航班:<select name="aircraft.aircraftId">
+       		<option th:each="aircraft : ${aircrafts}" th:value="${aircraft.aircraftId}" th:text="${aircraft.aircraftName}"></option>
+       </select><br>
+        舱位类型:<select name="cabin.cabinId" >
+        	<option th:each="cabin : ${cabins}" th:value="${cabin.cabinId}" th:text="${cabin.cabinName}"></option>
+        </select><br>
+        票数:<input type="text" name="quantity"><br>
+        价格:<input type="text" name="Price"><br>
+        <input type="submit" value="提交">
+    </form>
+</body>
+</html>

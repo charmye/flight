@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<title>Insert title here</title>
+</head>
+<body>
+	<h1>用户管理修改</h1>
+	<hr>
+
+    
+    <form action="/updateUser" method="post" enctype="multipart/form-data">
+    	<p><input type="hidden" name="userId" th:value="${user.userId}"></p>
+		<p>
+			头像：<input type="file" name="photo"/>
+			<img th:src="@{${user.fileurl}}" width="100px">
+			<input type="hidden" name="fileurl" th:value="${user.fileurl}">
+		</p>
+		<p>账号：<input type="text" name="username" th:value="${user.username}" readonly="readonly"></p>
+		<p>密码：<input type="text" name="password" th:value="${user.password}"/></p>
+		<p>电话：<input type="text" name="phone" th:value="${user.phone}"></p>
+		<p>邮箱:<input type="text" name="email" th:value="${user.email}"></p>
+		<p><input type="submit" value="提交"/></p>
+</form>
+</body>
+</html>

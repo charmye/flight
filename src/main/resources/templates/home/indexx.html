@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<title>Insert title here</title>
+
+<script type="text/javascript" 
+src="E:\001\MyProjectsForEclipse\flight\src\main\resources\static\js\jquery-3.2.1.min.js"></script>
+<script type="text/javascript" th:src="@{/js/jquery-3.2.1.min.js}"></script>
+
+<link rel="stylesheet" 
+href="E:\001\MyProjectsForEclipse\flight\src\main\resources\static\css\bootstrap.min.css"> 
+<link rel="stylesheet" th:href="@{/css/bootstrap.min.css}">
+
+<link rel="stylesheet" 
+href="E:\001\MyProjectsForEclipse\flight\src\main\resources\static\css\index.css"> 
+<link rel="stylesheet" th:href="@{/css/index.css}">
+
+
+<link rel="stylesheet" 
+href="E:\001\MyProjectsForEclipse\flight\src\main\resources\static\css\components.min.css"> 
+<link rel="stylesheet" th:href="@{/css/components.min.css}">
+
+<link rel="stylesheet" 
+href="E:\001\MyProjectsForEclipse\flight\src\main\resources\static\css\login.css"> 
+<link rel="stylesheet" th:href="@{/css/login.css}">
+
+<script type="text/javascript">
+function checkDestination(ipt){
+	　　　　　　var opt = ipt.options[ipt.selectedIndex]
+	
+			if(opt.value==""){
+				alert("请先选择出发地");
+				return;
+			}
+				/* alert("The option you select is:"+opt.text+"("+opt.value+")"); */
+				 $.getJSON(
+						"checkDestinationAirport", 
+						{ "fromAirportId" : opt.value }, 
+						function(json){
+								var airport = eval(json);
+					  			console.log(airport);
+					  			$("#destination").empty();
+					  			$.each(airport, function (index, item) {
+					  				var airportId = airport[index].airportId;
+					  				var region = airport[index].region;
+					  				$("#destination").append("<option value='"+airportId+"'>"+region+"</option>");
+					  			})
+					  	}
+					);	 
+}
+
+
+function check(){
+	var from = $("#from").val();
+	var destination = $("#destination").val();
+	if(from==0&destination==0){
+		alert("正确选择出发地于目的地后查票");
+		return false;
+	}
+}
+</script>
+
+</head>
+<body class="login">
+<div class="nav">
+	<h1>首页</h1>
+</div>
+<div class="big">
+<div class="peripheral">
+	<div class="middle_left content">
+		<form action="/ticketCheck" method="post"  onsubmit="return check()">
+			<div class="form-group">
+				<label class="control-label">出发地：</label>
+					<div>
+						<select name="fromAirportId" id="from" onchange="checkDestination(this)" class="form-control">
+							<option selected="selected" value="0">选择出发地</option>
+							<option th:each="from : ${fromAirport}" th:value="${from.airportId}" th:text="${from.region}"></option>
+						</select>
+					</div>
+			</div>
+			<div class="form-group">
+				<label class="control-label">目的地：</label>
+					<div>
+					<select name="destinationAirportId" id="destination" class="form-control">
+						<option selected="selected" value="0">请先选择出发地</option>
+					</select>
+				</div>
+			</div>
+			<div>
+				<p>
+				<input type="submit" value="查票" class="btn btn-default">
+				</p>
+			</div>
+		</form>
+	</div>	
+	
+	<div class="middle_right content">
+		<div class="photo" th:if="${session.user} != null">
+			
+			<a th:if="${session.user} != null" th:href="goUser">
+				<img th:if="${session.user} != null" th:src="@{${session.user.fileurl}}" width="100px">
+			</a>
+		</div>
+			<a th:if="${session.user} == null" href="login" th:text="登陆"></a>
+			<p th:if="${session.user} != null" th:text="|欢迎您, ${session.user.username}!|"></p>
+			<a th:if="${session.user} != null" th:text="用户中心" th:href="goUser"></a>
+			<a th:if="${session.user} != null" th:text="注销" th:href="doLogout"></a>
+	</div>
+	
+</div>
+</div>
+</body>
+</html>

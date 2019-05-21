@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<title>Insert title here</title>
+
+<script type="text/javascript" 
+src="E:\001\MyProjectsForEclipse\flight\src\main\resources\static\js\jquery-3.2.1.min.js"></script>
+
+
+<script type="text/javascript" th:src="@{/js/jquery-3.2.1.min.js}"></script>
+
+<link rel="stylesheet" th:href="@{/css/bootstrap.min.css}">
+
+<link rel="stylesheet" th:href="@{/css/index.css}">
+
+<link rel="stylesheet" th:href="@{/css/components.min.css}">
+
+<link rel="stylesheet" th:href="@{/css/login.css}">
+
+</head>
+<body>
+<h1>付款</h1>
+<hr>
+需付金额<p th:text="${order.total}"></p>
+<a th:href="@{/payment(orderId=${order.orderId})}" onclick="return foo();">付款</a>
+
+<script type="text/javascript">
+	
+function foo(){  
+    if(confirm("确认购买？")){
+    	alert("购买成功")
+        return true;  
+    }  
+    return false;  
+ }    
+
+</script>
+</body>
+</html>

@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<title>Insert title here</title>
+</head>
+<body>
+	<h1>机场管理修改</h1>
+	<hr>
+
+	<form action="/updateAirport" method="post">
+	<input type="hidden" name="airportId" th:value="${airport.airportId}">
+        机场名称: <input name="airportName" type="text" th:value="${airport.airportName}"><br>
+        地区名称：     <input name="region" type="text" th:value="${airport.region}"> <br>
+        <button type="submit">提交</button>
+    </form>
+</body>
+</html>

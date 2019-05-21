@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<title>Insert title here</title>
+
+<script type="text/javascript" th:src="@{/js/jquery-3.2.1.min.js}"></script>
+
+<script type="text/javascript" th:src="@{/js/bootstrap.js}"></script>
+
+<link rel="stylesheet" th:href="@{/css/bootstrap.min.css}">
+
+<link rel="stylesheet" th:href="@{/css/component.css}">
+
+<link rel="stylesheet" th:href="@{/css/components.min.css}">
+
+<link rel="stylesheet" th:href="@{/css/login.css}">
+</head>
+<body class="login">
+
+<form action="/doLogin" method="post" class="content">
+	<h3>登陆</h3>
+<p th:text="${mse}"></p>
+
+	<div class="form-group">
+     	<label class="control-label">账号：</label>
+     <div>
+       <input class="form-control" type="text" name="username"/>
+     </div>
+    </div>
+    
+    <div class="form-group">
+    	<label class="control-label">密码：</label>
+    	<div>
+    		<input class="form-control" name="password" type="password"/>
+    	</div>
+    </div>
+    
+	<div class="form-actions">
+		<input type="submit" value="登陆" class="btn btn-default">
+	</div>
+	<a href="register">无账号，去注册</a>
+</form>
+
+</body>
+</html>

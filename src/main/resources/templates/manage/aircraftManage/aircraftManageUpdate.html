@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<title>Insert title here</title>
+</head>
+<body>
+	<h1>航班管理修改</h1>
+	<hr>
+
+	<form action="/updateAircraft" method="post">
+	<input type="text" name="aircraftId" th:value="${aircraftId}" hidden="hidden">
+       	航班名称: <input name="aircraftName" type="text"><br>
+        <button type="submit">提交</button>
+    </form>
+</body>
+</html>
